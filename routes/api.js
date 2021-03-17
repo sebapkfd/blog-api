@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 router.post('/posts', passport.authenticate("jwt", { session: false }) ,post_controller.create_post);
 
 // // GET all posts - api/posts
-// router.get('/posts', post_controller.all_posts);
+router.get('/posts', post_controller.list_post);
 
 // // GET single posts - api/posts/:id
 // router.get('/posts/:id', post_controller.single_post);
