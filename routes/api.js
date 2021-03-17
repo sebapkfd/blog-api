@@ -8,12 +8,12 @@ const post_controller = require('../controllers/postController');
 const msg_controller = require('../controllers/msgController');
 
 // Home page
-router.get('/', function(req,res,next) {
+router.get('/', function(req, res, next) {
   res.redirect('/api/posts');
 });
 
 // POST create new post - api/posts
-// router.post('/posts', passport.authenticate("jwt", { session: false }) ,post_controller.create_post);
+router.post('/posts', passport.authenticate("jwt", { session: false }) ,post_controller.create_post);
 
 // // GET all posts - api/posts
 // router.get('/posts', post_controller.all_posts);
