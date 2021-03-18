@@ -17,7 +17,7 @@ exports.signup = (req, res, next)=>{
             if(err) {return next(err);}
             res.status(200).json({
                 message: "Sign up succesfull" + user.username,
-                user: req.user,
+                user: req.user
             })
         })
     });
@@ -33,7 +33,8 @@ exports.login = (req, res, next) => {
             const token = jwt.sign({ user }, 'your_jwt_secret', {
                 expiresIn: '1d',
             });
-            return res.json({ user, token });
+            let data = { _id: user._id, username: user.username};
+            return res.json({ user: data, token });
         });
     })(req, res);
 }
