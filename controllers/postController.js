@@ -9,7 +9,7 @@ exports.create_post = (req, res, next) => {
 }
 
 exports.list_post = (req, res, next) => {
-    Post.find({})
+    Post.find({'published': true})
     .populate('user')
     .exec((err, list_post) => {
         if (err) { return next(err)}
