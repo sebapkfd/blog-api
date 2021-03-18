@@ -25,7 +25,7 @@ router.get('/posts', post_controller.list_post);
 // router.put('/posts/:id', passport.authenticate("jwt", { session: false }), post_controller.update_post);
 
 // // DELETE delete post - api/posts/:id
-// router.delete('/posts/:id', passport.authenticate("jwt", { session: false }), post_controller.delete_post);
+router.delete('/posts/:id', passport.authenticate("jwt", { session: false }), post_controller.delete_post);
 
 // // POST publish post
 // router.post('/posts/:id/publish', passport.authenticate("jwt", { session: false }), post_controller.publish_post);

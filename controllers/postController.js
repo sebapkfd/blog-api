@@ -16,3 +16,12 @@ exports.list_post = (req, res, next) => {
         res.json(list_post)
     })
 }
+
+exports.delete_post = (req, res, next) => {
+    Post.findByIdAndRemove(req.body.id)
+    .exec((err) => {
+        if (err) {return next(err)}
+        res.send('Post deleted')
+    })
+    console.log('Deleting ');
+}
