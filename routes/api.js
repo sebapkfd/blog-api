@@ -22,7 +22,7 @@ router.get('/posts', post_controller.list_post);
 router.get('/posts/:id', post_controller.post_detail);
 
 // // PUT update post - api/posts/:id
-// router.put('/posts/:id', passport.authenticate("jwt", { session: false }), post_controller.update_post);
+router.put('/posts/edit/:id', passport.authenticate("jwt", { session: false }), post_controller.update_post);
 
 // // DELETE delete post - api/posts/:id
 router.delete('/posts/:id', passport.authenticate("jwt", { session: false }), post_controller.delete_post);
