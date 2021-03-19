@@ -19,7 +19,7 @@ router.post('/posts', passport.authenticate("jwt", { session: false }) ,post_con
 router.get('/posts', post_controller.list_post);
 
 // // GET single posts - api/posts/:id
-// router.get('/posts/:id', post_controller.single_post);
+router.get('/posts/:id', post_controller.post_detail);
 
 // // PUT update post - api/posts/:id
 // router.put('/posts/:id', passport.authenticate("jwt", { session: false }), post_controller.update_post);

@@ -23,5 +23,13 @@ exports.delete_post = (req, res, next) => {
         if (err) {return next(err)}
         res.send('Post deleted')
     })
-    console.log('Deleting ');
+}
+
+exports.post_detail = (req, res, next) => {
+    Post.findById(req.params.id) //Later need to populate
+    .populate('user')
+    .exec((err, post) => {
+        if(err) { return next(err) }
+        res.send(post);
+    })
 }
