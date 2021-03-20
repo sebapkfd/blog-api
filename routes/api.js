@@ -28,7 +28,7 @@ router.put('/posts/edit/:id', passport.authenticate("jwt", { session: false }), 
 router.delete('/posts/:id', passport.authenticate("jwt", { session: false }), post_controller.delete_post);
 
 // // GET all unpublished posts - api/unpublished
-router.get('/unpublished', passport.authenticate("jwt", { session: false}), post_controller.list_unpublished);
+router.get('/unpublished/:id', passport.authenticate("jwt", { session: false}), post_controller.list_unpublished);
 
 // // POST publish post
 // router.post('/posts/:id/publish', passport.authenticate("jwt", { session: false }), post_controller.publish_post);
