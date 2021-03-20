@@ -35,7 +35,6 @@ exports.post_detail = (req, res, next) => {
 }
 
 exports.update_post = (req, res, next) => {
-
     const updatedPost = new Post({
         title: req.body.title,
         text: req.body.text,
@@ -45,13 +44,8 @@ exports.update_post = (req, res, next) => {
         _id: req.params.id
     })
 
-    //troubles with the id
     Post.findByIdAndUpdate(req.params.id, updatedPost, {},  (err, updatedItem) => {
         if (err) { return next(err) }
-        res.redirect(updatedItem.url)
+        res.send('Post Updated')
     })
-    // .exec((err) => {
-    //     if (err) { return next(err) }
-    //     res.send('Post Updated')
-    // })
 }

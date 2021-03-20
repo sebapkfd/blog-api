@@ -19,6 +19,7 @@ const app = express();
 mongoose.connect(key, { useNewUrlParser: true , useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+mongoose.set('useFindAndModify', false);
 
 app.use(logger('dev'));
 app.use(express.json());
