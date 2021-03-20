@@ -15,7 +15,6 @@ const apiRouter = require('./routes/api');
 const {key} = require('./info');
 const app = express();
 
-//troubles with update
 mongoose.connect(key, { useNewUrlParser: true , useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

@@ -49,3 +49,12 @@ exports.update_post = (req, res, next) => {
         res.send('Post Updated')
     })
 }
+
+exports.list_unpublished = (req, res, next) => { //this could be simplified
+    Post.find({'published': false})
+    .populate('user')
+    .exec((err, list_post) => {
+        if (err) { return next(err)}
+        res.json(list_post)
+    })
+}
