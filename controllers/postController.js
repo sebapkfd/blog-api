@@ -1,4 +1,6 @@
-const Post = require('../models/post')
+const Post = require('../models/post');
+const Comment = require('../models/comment');
+const async = require('async');
 
 exports.create_post = (req, res, next) => {
     const newPost = new Post({...req.body});
@@ -26,11 +28,24 @@ exports.delete_post = (req, res, next) => {
 }
 
 exports.post_detail = (req, res, next) => {
-    Post.findById(req.params.id) //Later need to populate
-    .populate('user')
-    .exec((err, post) => {
-        if(err) { return next(err) }
-        res.send(post);
+    async.parallel({
+        post_detail: (callback) => {
+            Post.findById(req.params.id)
+            .exec(callback);
+        },
+        post_comments: (callback) => {
+            Comment.find({'post': req.params.id})
+            .populate('post')
+            .exec(callback);
+        }
+    }, (err, results) => {
+        if (err) { return next(err)}
+        if(results.post_detail === null) {
+            let err = new Error('Post not found');
+            err.status = 404;
+            return next(err)
+        }
+        res.json({post_detail: results.post_detail, post_comments: results.post_comments})
     })
 }
 
