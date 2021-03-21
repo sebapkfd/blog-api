@@ -45,11 +45,12 @@ router.post('/posts/:postid/comments', passport.authenticate("jwt", { session: f
 // // GET single comment -api/posts/:postid/comments/:commentid
 // router.get('/posts/:postid/comments/:commentid', msg_controller.single_comment);
 
+//Change the url
 // // PUT update comment - api/posts/:postid/comments/:commentid
 // router.put('/posts/:postid/comments/:commentid',passport.authenticate("jwt", { session: false }), msg_controller.update_comment);
 
 // // DELETE delete comment - api/posts/:postid/comments/:commentid
-// router.delete('/posts/:postid/comments/:commentid',passport.authenticate("jwt", { session: false }), msg_controller.delete_comment);
+router.delete('/comments/:commentid',passport.authenticate("jwt", { session: false }), msg_controller.delete_comment);
 
 // POST user signup - api/signup
 router.post('/signup', user_controller.signup);

@@ -7,3 +7,11 @@ exports.create_comment = (req, res, next) => {
         res.send('Comment saved!')
     })
 }
+
+exports.delete_comment = (req, res, next) => {
+    Comment.findByIdAndRemove(req.body.id)
+    .exec((err) => {
+        if (err) {return next(err)}
+        res.send('Comment deleted')
+    })
+}
