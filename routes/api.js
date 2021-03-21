@@ -5,7 +5,7 @@ const router = express.Router();
 
 const user_controller = require('../controllers/userController');
 const post_controller = require('../controllers/postController');
-const msg_controller = require('../controllers/msgController');
+const msg_controller = require('../controllers/commentController');
 
 // Home page
 router.get('/', function(req, res, next) {
@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 // POST create new post - api/posts
-router.post('/posts', passport.authenticate("jwt", { session: false }) ,post_controller.create_post);
+router.post('/posts', passport.authenticate("jwt", { session: false }), post_controller.create_post);
 
 // // GET all posts - api/posts
 router.get('/posts', post_controller.list_post);
@@ -37,7 +37,7 @@ router.get('/unpublished/:id', passport.authenticate("jwt", { session: false}), 
 // router.post('/posts/:id/unpublish', passport.authenticate("jwt", { session: false }), post_controller.unpublish_post);
 
 // // POST create new comment - api/posts/:postid/comments
-// router.post('/posts/:postid/comments', msg_controller.create_comment);
+router.post('/posts/:postid/comments', passport.authenticate("jwt", { session: false }), msg_controller.create_comment);
 
 // // GET all comments - api/posts/:postid/comments
 // router.get('/posts/:postid/comments', msg_controller.all_comments);
