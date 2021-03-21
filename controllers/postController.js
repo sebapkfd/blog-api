@@ -36,6 +36,7 @@ exports.post_detail = (req, res, next) => {
         post_comments: (callback) => {
             Comment.find({'post': req.params.id})
             .populate('post')
+            .populate('user')
             .exec(callback);
         }
     }, (err, results) => {
