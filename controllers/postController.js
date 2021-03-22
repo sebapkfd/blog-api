@@ -12,6 +12,7 @@ exports.create_post = (req, res, next) => {
 
 exports.list_post = (req, res, next) => {
     Post.find({'published': true})
+    .sort({'timestamp':'Descending'})
     .populate('user')
     .exec((err, list_post) => {
         if (err) { return next(err)}
