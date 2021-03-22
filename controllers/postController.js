@@ -32,6 +32,7 @@ exports.post_detail = (req, res, next) => {
     async.parallel({
         post_detail: (callback) => {
             Post.findById(req.params.id)
+            .populate('user')
             .exec(callback);
         },
         post_comments: (callback) => {

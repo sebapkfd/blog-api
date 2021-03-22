@@ -39,9 +39,6 @@ router.get('/unpublished/:id', passport.authenticate("jwt", { session: false}), 
 // // POST create new comment - api/posts/:postid/comments
 router.post('/comments', passport.authenticate("jwt", { session: false }), msg_controller.create_comment);
 
-// // GET all comments - api/posts/:postid/comments
-// router.get('/posts/:postid/comments', msg_controller.all_comments);
-
 // // GET single comment -api/posts/:postid/comments/:commentid
 router.get('/comments/:id', msg_controller.comment_detail);
 
