@@ -30,12 +30,6 @@ router.delete('/posts/:id', passport.authenticate("jwt", { session: false }), po
 // // GET all unpublished posts - api/unpublished
 router.get('/unpublished/:id', passport.authenticate("jwt", { session: false}), post_controller.list_unpublished);
 
-// // POST publish post
-// router.post('/posts/:id/publish', passport.authenticate("jwt", { session: false }), post_controller.publish_post);
-
-// // POST unpublish post
-// router.post('/posts/:id/unpublish', passport.authenticate("jwt", { session: false }), post_controller.unpublish_post);
-
 // // POST create new comment - api/posts/:postid/comments
 router.post('/comments', passport.authenticate("jwt", { session: false }), msg_controller.create_comment);
 
