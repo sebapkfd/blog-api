@@ -68,7 +68,7 @@ exports.update_post = (req, res, next) => {
     })
 }
 
-exports.list_unpublished = (req, res, next) => { //this could be simplified
+exports.list_unpublished = (req, res, next) => {
     Post.find({'published': false, 'user': req.params.id})
     .populate('user')
     .exec((err, list_post) => {
