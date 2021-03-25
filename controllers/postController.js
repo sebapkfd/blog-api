@@ -37,6 +37,7 @@ exports.post_detail = (req, res, next) => {
         },
         post_comments: (callback) => {
             Comment.find({'post': req.params.id})
+            .sort({'timestamp':'Descending'})
             .populate('post')
             .populate('user')
             .exec(callback);
