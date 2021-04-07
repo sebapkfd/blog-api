@@ -7,20 +7,29 @@ const jwt = require('jsonwebtoken');
 
 exports.signup = (req, res, next)=>{
 
-    const user = new User({
-        username: req.body.username
-    });
-    bcrypt.hash(req.body.password, 10, (err, hashedPassword)=>{
-        if(err) {return next(err);}
-        user.set('password', hashedPassword);
-        user.save(err=>{
-            if(err) {return next(err);}
-            res.status(200).json({
-                message: "Sign up succesfull" + user.username,
-                user: req.user
-            })
-        })
-    });
+    User.findOne({'username' : req.body.username})
+    .exec((err, foundUser) => {
+        if (err) { return next(err)}
+        if(foundUser) {
+            return res.json({ msg: 'Username already used'});
+        }
+        else {
+            const user = new User({
+                username: req.body.username
+            });
+            bcrypt.hash(req.body.password, 10, (err, hashedPassword)=>{
+                if(err) {return next(err);}
+                user.set('password', hashedPassword);
+                user.save(err=>{
+                    if(err) {return next(err);}
+                    res.status(200).json({
+                        message: "Sign up succesfull" + user.username,
+                        user: req.user
+                    })
+                })
+            });
+        }
+    })
 }
 
 exports.login = (req, res, next) => {

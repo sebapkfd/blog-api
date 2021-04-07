@@ -12,7 +12,7 @@ exports.create_post = (req, res, next) => {
 
 exports.list_post = (req, res, next) => {
     Post.find({'published': true})
-    .sort({'timestamp':'Descending'})
+    .sort({'timestamp':'Ascending'})
     .populate('user')
     .exec((err, list_post) => {
         if (err) { return next(err)}
@@ -37,7 +37,7 @@ exports.post_detail = (req, res, next) => {
         },
         post_comments: (callback) => {
             Comment.find({'post': req.params.id})
-            .sort({'timestamp':'Descending'})
+            .sort({'timestamp':'Ascending'})
             .populate('post')
             .populate('user')
             .exec(callback);
@@ -71,6 +71,7 @@ exports.update_post = (req, res, next) => {
 
 exports.list_unpublished = (req, res, next) => {
     Post.find({'published': false, 'user': req.params.id})
+    .sort({'timestamp':'Ascending'})
     .populate('user')
     .exec((err, list_post) => {
         if (err) { return next(err)}
