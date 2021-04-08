@@ -11,7 +11,6 @@ require('./passport')
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api');
 
-// const {key} = require('./info');
 let mongoDB = process.env.MONGODB_URI || 'other';
 const app = express();
 

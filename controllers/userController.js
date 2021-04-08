@@ -3,7 +3,7 @@ const User = require('../models/user');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const {secret} = require('../info');
+const secret = process.env.SECRET_KEY || 'other';
 
 
 exports.signup = (req, res, next)=>{
@@ -40,7 +40,7 @@ exports.login = (req, res, next) => {
         }
         req.login(user, { session: false }, (error) => {
             if (error) res.send(error);
-            const token = jwt.sign({ user }, 'your_jwt_secret', {
+            const token = jwt.sign({ user }, secret, {
                 expiresIn: '1d',
             });
             let data = { _id: user._id, username: user.username};
