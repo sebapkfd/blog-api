@@ -3,6 +3,7 @@ const User = require('../models/user');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const {secret} = require('../info');
 
 
 exports.signup = (req, res, next)=>{
