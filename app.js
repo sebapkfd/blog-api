@@ -11,10 +11,11 @@ require('./passport')
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api');
 
-const {key} = require('./info');
+// const {key} = require('./info');
+let mongoDB = process.env.MONGODB_URI || 'other';
 const app = express();
 
-mongoose.connect(key, { useNewUrlParser: true , useUnifiedTopology: true});
+mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 mongoose.set('useFindAndModify', false);
